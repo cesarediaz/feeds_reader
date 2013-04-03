@@ -3,7 +3,8 @@ FeedsReader::Application.routes.draw do
     root :to => 'home#index'
   end
   root :to => "home#index"
-  devise_for :users
+  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
+
   resources :users
 
   # The priority is based upon order of creation:
