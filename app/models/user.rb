@@ -12,11 +12,11 @@ class User < ActiveRecord::Base
 
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|
-      user.provider   = auth.provider
-      user.uid        = auth.uid
-      user.login      = auth.info.nickname
-      user.first_name = "first name"
-      user.last_name  = "last name"
+      user.provider   = auth["provider"]
+      user.uid        = auth["uid"]
+      user.login      = auth["info"]["nickname"]
+      user.first_name = "FirstName"
+      user.last_name  = "LastName"
     end
   end
 

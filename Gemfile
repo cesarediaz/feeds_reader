@@ -34,3 +34,4 @@ gem "factory_girl_rails", ">= 4.2.1", :group => [:development, :test]
 gem "devise", ">= 2.2.3"
 gem "slim", ">= 1.3.6"
 gem "omniauth-twitter", ">= 0.0.15"
+gem "omniauth-google-oauth2", ">= 0.1.13"

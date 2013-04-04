@@ -16,6 +16,10 @@
     <li>
     <%= link_to 'Sign In with Twitter', user_omniauth_authorize_path(:twitter) %>
     </li>
+    |
+    <li>
+    <%= link_to 'Sign In with Google', user_omniauth_authorize_path(:google) %>
+    </li>
   <% end %>
   <% if user_signed_in? %>
     <li>
