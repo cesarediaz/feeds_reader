@@ -12,7 +12,7 @@ describe User do
       :password_confirmation => "changeme"
     }
   end
-
+  it { should have_one(:profile) }
   it "should create a new instance given a valid attribute" do
     User.create!(@attr)
   end

@@ -10,6 +10,14 @@ class User < ActiveRecord::Base
   attr_accessor :login
   attr_accessible :email, :password, :password_confirmation, :remember_me, :login, :first_name, :last_name
 
+  has_one :profile
+
+  #callback
+  after_create do |user|
+    Profile.create!(:user_id => user.id, :profile_type => 10)
+  end
+
+
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|
       user.provider   = auth["provider"]

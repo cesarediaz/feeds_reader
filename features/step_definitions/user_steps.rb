@@ -142,6 +142,10 @@ Then /^I should be signed in$/ do
   page.should_not have_content "Login"
 end
 
+Then /^I should see profile link$/ do
+  page.should have_content "Profile"
+end
+
 Then /^I should be signed out$/ do
   page.should have_content "Sign up"
   page.should have_content "Login"
@@ -191,4 +195,10 @@ end
 Then /^I should see my name$/ do
   create_user
   page.should have_content @user[:first_name]
+end
+
+##And
+
+And /^I go to user profile$/ do
+  visit profile_path(@user)
 end
