@@ -37,3 +37,5 @@ gem "slim", ">= 1.3.6"
 gem "omniauth-twitter", ">= 0.0.15"
 gem "omniauth-google-oauth2", ">= 0.1.13"
 gem "paperclip", ">= 3.4.1"
+gem "feedzirra"
+
