@@ -197,6 +197,10 @@ Then /^I should see my name$/ do
   page.should have_content @user[:first_name]
 end
 
+Then(/^I should see create profile ad$/) do
+  page.should have_content "You should complete your profile!"
+end
+
 ##And
 
 And /^I go to user profile$/ do
@@ -208,4 +212,9 @@ end
 
 And /^I go to edit user profile$/ do
   visit edit_profile_path(@user)
+end
+
+And /^I go to delete user profile$/ do
+  visit profile_path(@user)
+  click_link('Destroy')
 end

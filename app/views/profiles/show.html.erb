@@ -9,7 +9,9 @@
 <%= link_to 'Destroy', profile_path(@profile),  :confirm => 'Are you sure?', :method => :delete %>
 
 <% else %>
-
+<p>
+  You should complete your profile!
+</p>
 <%= link_to 'New', new_profile_path %>
 
 <% end %>
