@@ -201,4 +201,11 @@ end
 
 And /^I go to user profile$/ do
   visit profile_path(@user)
+  page.should have_content "Profile type"
+  page.should have_content "10"
+  page.should have_content "Edit"
+end
+
+And /^I go to edit user profile$/ do
+  visit edit_profile_path(@user)
 end

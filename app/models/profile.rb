@@ -8,7 +8,6 @@ class Profile < ActiveRecord::Base
   validates :profile_type, :presence => true
 
   attr_accessible :avatar
-  has_attached_file :avatar, :styles => {:large => "400x400>", :medium => "200x200>", :thumb => "100x100>" }
-  #, :default_url => "/images/:style/missing.png"
+  has_attached_file :avatar, :styles => {:large => "400x400#", :medium => "200x200#", :thumb => "100x100#" } , :default_url => "/images/:style/missing.png"
 
 end
