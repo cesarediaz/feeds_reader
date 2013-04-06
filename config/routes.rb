@@ -7,6 +7,7 @@ FeedsReader::Application.routes.draw do
 
   resources :users
   resources :profiles
+  resources :channels
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

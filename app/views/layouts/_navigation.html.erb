@@ -23,6 +23,10 @@
   <% end %>
   <% if user_signed_in? %>
     <li>
+    <%= link_to 'Channels', channels_path(current_user) %>
+    </li>
+    |
+    <li>
     <%= link_to 'Edit account', edit_user_registration_path %>
     </li>
     |
