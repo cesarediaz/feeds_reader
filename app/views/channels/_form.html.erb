@@ -1,9 +1,17 @@
 <%= form_for(@channel, {:id => 'channel_form' }) do |f| %>
   <%= render :partial => 'shared/form_errors', :locals => {:target => @channel} %>
-  <p>
-    Url
-  </p>
-  <%= f.text_field :url %>
+
+  <% if edit %>
+    <p>
+      Name
+    </p>
+    <%= f.text_field :name %>
+  <% else %>
+    <p>
+      Url
+    </p>
+    <%= f.text_field :url %>
+  <% end %>
 
   <%= f.submit %>
 
