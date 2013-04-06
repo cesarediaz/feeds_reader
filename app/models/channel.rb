@@ -18,7 +18,7 @@ class Channel < ActiveRecord::Base
   end
 
   def self.get_title(url)
-    feed = Feedzirra::Feed.fetch_and_parse(url)
+    Feedzirra::Feed.fetch_and_parse(url).title
   end
 
 end

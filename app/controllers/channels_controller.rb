@@ -1,4 +1,3 @@
-
 class ChannelsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :get_channel, :only => [:show, :edit, :update, :destroy]
@@ -46,11 +45,11 @@ class ChannelsController < ApplicationController
     @channel.destroy
     redirect_to channels_path
   end
+
   private
 
   def get_channel
-    @channel = Channel.find_by_user_id(current_user.id)
+    @channel = Channel.find(params[:id])
   end
-
 
 end
