@@ -11,19 +11,18 @@ class ChannelsController < ApplicationController
   end
 
   def create
-    begin
-      if Channel.valid_rss_url?(params[:channel][:url])
-        params[:channel][:user_id] = current_user.id
-        params[:channel][:name] = Channel.get_title(params[:channel][:url])
-        @channel = Channel.new(params[:channel])
-        if @channel.save
-          redirect_to(@channel)
-        else
-          render :action => "new"
-        end
+    if params[:channel][:url].present? && channel_is_valid?(params[:channel][:url])
+      params[:channel][:user_id] = current_user.id
+      params[:channel][:name] = Channel.get_title(params[:channel][:url])
+      @channel = Channel.new(params[:channel])
+      if @channel.save
+        redirect_to(@channel) && return
+      else
+        render :action => "new"
       end
-    rescue
-      render :action => "new"
+    else
+      flash[:alert] = 'Add a valid rss feeds url'
+      redirect_to new_channel_path
     end
   end
 
@@ -52,4 +51,7 @@ class ChannelsController < ApplicationController
     @channel = Channel.find(params[:id])
   end
 
+  def channel_is_valid?(url)
+    Channel.valid_rss_url?(url) && Channel.valid_response_from_url?(url) && Channel.get_title(url) ? true : false
+  end
 end

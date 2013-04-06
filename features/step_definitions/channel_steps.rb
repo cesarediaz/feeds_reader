@@ -4,7 +4,6 @@ end
 
 Then(/^I go to create channel$/) do
   visit new_channel_path
-  page.should have_content "Add new channel"
   page.should have_content "Url"
 end
 

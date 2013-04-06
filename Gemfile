@@ -38,4 +38,4 @@ gem "omniauth-twitter", ">= 0.0.15"
 gem "omniauth-google-oauth2", ">= 0.1.13"
 gem "paperclip", ">= 3.4.1"
 gem "feedzirra"
-
+gem "feedvalidator", ">= 0.1.2"
