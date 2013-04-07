@@ -7,8 +7,7 @@ class User < ActiveRecord::Base
          :confirmable, :omniauthable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessor :login
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :login, :first_name, :last_name
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :login, :first_name, :last_name, :login
 
   has_one :profile
 
