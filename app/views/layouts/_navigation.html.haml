@@ -1,0 +1,37 @@
+- @home = @login = @account = @profile = @admin = @signup = ''
+
+- case request.env['REQUEST_PATH']
+  - when "/"
+    - @home = 'active'
+  - when "/users/sign_up"
+    - @signup = 'active'
+  - when "/users/sign_in"
+    - @login = 'active'
+  - when /profiles\/\d\/edit/
+    - @profile = 'active'
+  - when /profiles\/\d/
+    - @profile = 'active'
+  - when /users\/edit/
+    - @account = 'active'
+
+
+#menu
+  %ul
+    - if user_signed_in?
+      %li{:class => "#{@account}"}
+        = link_to 'Edit account', edit_user_registration_path
+      %li{:class => "#{@profile}"}
+        = link_to 'Profile', profile_path(current_user)
+    - else
+      %li{:class => "#{@signup}"}
+        = link_to 'Sign Up', new_user_registration_path
+    - if user_signed_in?
+      %li
+        = link_to 'Logout', destroy_user_session_path, :method=>'delete'
+    - else
+      %li{:class => "#{@login}"}
+        = link_to 'Login', new_user_session_path
+      %li
+        = link_to image_tag("sign-in-with-twitter-gray.png"), user_omniauth_authorize_path(:twitter)
+      %li
+        = link_to image_tag("sign_in_with_google.jpg"), user_omniauth_authorize_path(:google)

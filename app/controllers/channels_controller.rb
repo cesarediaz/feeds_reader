@@ -3,7 +3,6 @@ class ChannelsController < ApplicationController
   before_filter :get_channel, :only => [:show, :edit, :update, :destroy]
 
   def index
-    @channels = Channel.where('user_id = ?', current_user.id)
   end
 
   def new

@@ -1,0 +1,9 @@
+%h2 My Channels
+%ul.style3
+  - @channels.each do |channel|
+    %li.first
+      %a{:href => "#"}= channel.name
+      |
+      = link_to 'Edit', edit_channel_path(channel)
+      |
+      = link_to 'Destroy', channel_path(channel), :confirm => 'Are you sure?', :method => :delete

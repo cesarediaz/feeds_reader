@@ -33,7 +33,7 @@ gem "capybara", ">= 2.0.3", :group => :test
 gem "factory_girl_rails", ">= 4.2.1", :group => [:development, :test]
 gem "shoulda-matchers", ">= 1.5.6", :group => [:development, :test]
 gem "devise", ">= 2.2.3"
-gem "slim", ">= 1.3.6"
+gem "haml", ">= 4.0.2"
 gem "omniauth-twitter", ">= 0.0.15"
 gem "omniauth-google-oauth2", ">= 0.1.13"
 gem "paperclip", ">= 3.4.1"

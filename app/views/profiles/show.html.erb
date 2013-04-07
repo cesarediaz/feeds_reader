@@ -3,7 +3,9 @@
 <p><%= @profile.profile_type %> channels</p>
 
 <h1>Avatar</h1>
-<p><img src="<%= @profile.avatar.url(:thumb) %>"></p>
+<% if @profile.avatar %>
+  <p><img src="<%= @profile.avatar.url(:thumb) %>"></p>
+<% end %>
 <%= link_to 'Edit', edit_profile_path(@profile) %>
 |
 <%= link_to 'Destroy', profile_path(@profile),  :confirm => 'Are you sure?', :method => :delete %>

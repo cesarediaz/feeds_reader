@@ -1,0 +1,23 @@
+common: &common
+  twitter:
+    app_id: "WF8cuCG31754TN2s60hCFQ"
+    app_secret: "q0v9ncHXf639HUun7Rd6gyZbdqVTCKh8IXVyS1oCA8"
+  google:
+    app_id: "98373461122-8jutb23ohmm1a8a7aclu5jdlbpgc1ukb.apps.googleusercontent.com"
+    app_secret: "r1HzYECznFMT10bIDGSElwCi"
+
+development:
+  <<: *common
+
+test:
+  <<: *common
+
+production:
+  twitter:
+    app_id: "WF8cuCG31754TN2s60hCFQ"
+    app_secret: "q0v9ncHXf639HUun7Rd6gyZbdqVTCKh8IXVyS1oCA8"
+  google:
+    app_id: "98373461122-15gjl65qs87jta6i8vgqlumrpihjc5b3.apps.googleusercontent.com"
+    app_secret: "MChHA4alt_SyBT5XoD21B6y6"
+
+

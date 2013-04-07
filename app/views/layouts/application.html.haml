@@ -1,0 +1,60 @@
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    = yield(:head)
+    %title= content_for?(:title) ? yield(:title) : "Rss Feeds Reader"
+    %meta{:content => "", :name => "keywords"}/
+    %meta{:content => "", :name => "description"}/
+    %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700|Archivo+Narrow:400,700", :rel => "stylesheet", :type => "text/css"}/
+    = stylesheet_link_tag "styles", :media => "all"
+    /[if IE 6]
+      <link href="default_ie6.css" rel="stylesheet" type="text/css" />
+  %body
+    #header.container
+      #logo
+        %h1
+          - if user_signed_in? && current_user.profile
+            %div{:style => "position: relative; top: 20px;"}
+              = image_tag(current_user.profile.avatar(:thumb), :size => "100x100")
+          - elsif user_signed_in? && !current_user.profile
+            = link_to image_tag('thumb/missing.png', :title => 'Update your profile'), new_profile_path
+          - else
+            %a{:href => "/"} Feed Reader
+      = render :partial => "layouts/navigation"
+      = render :partial => "layouts/messages"
+    #page.container
+      #content
+        #onecolumn
+          = yield
+          - unless user_signed_in?
+            %h2 Welcome to Rss Feeds Reader!
+      #sidebar
+        #sbox1
+          - if user_signed_in?
+            %span{:style => 'float: left; padding: 0 10 10 0;'}
+              = link_to image_tag('add.png', :size => '20x20', :title => 'Add new channel'), new_channel_path
+            %h2 Channels
+            - @channels.each do |channel|
+              %li
+                = link_to channel.name, channel, :remote => true, :class => 'link-style'
+    #footer.container
+      #fbox3
+        %h2 Follows us!
+        %ul.style2
+          %li
+            %a{:href => "#"}
+              = image_tag("social03.png")
+          %li
+            %a{:href => "#"}
+              = image_tag("social01.png")
+          %li
+            %a{:href => "#"}
+              = image_tag("social04.png")
+          %li
+            %a{:href => "#"}
+              = image_tag("social02.png")
+    #copyright.container
+      %p
+        Copyright (c) 2013 Cesar Diaz. All rights reserved.
