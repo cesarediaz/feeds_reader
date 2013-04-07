@@ -1,3 +1,5 @@
+require 'hpricot'
+
 Then(/^I should see channels link$/) do
   page.should have_content "Channels"
 end
@@ -11,5 +13,7 @@ Then(/^I create the channel$/) do
   url = "http://clarin.feedsportal.com/c/33088/f/577681/index.rss"
   fill_in "channel_url", :with => url
   click_button "Create Channel"
-  page.should have_content url
+  doc = Hpricot.parse(open(url))
+  channel = doc.at("//title").inner_html
+  page.should have_content "Added #{channel}!"
 end

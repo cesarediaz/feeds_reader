@@ -107,6 +107,7 @@ GEM
       tilt
     hashie (1.2.0)
     hike (1.2.1)
+    hpricot (0.8.6)
     httpauth (0.2.0)
     i18n (0.6.1)
     journey (1.0.4)
@@ -249,6 +250,7 @@ DEPENDENCIES
   feedvalidator (>= 0.1.2)
   feedzirra
   haml (>= 4.0.2)
+  hpricot (>= 0.8.6)
   jquery-rails
   launchy (>= 2.2.0)
   omniauth-google-oauth2 (>= 0.1.13)

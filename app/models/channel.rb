@@ -1,6 +1,7 @@
 require "feedzirra"
 require "net/http"
 require "feed_validator"
+require 'hpricot'
 
 class Channel < ActiveRecord::Base
   attr_accessible :name, :url, :user_id
@@ -24,8 +25,9 @@ class Channel < ActiveRecord::Base
     v.validate_url(url) && v.valid? ? true : false
   end
 
-  def self.get_title(url)
-    Feedzirra::Feed.fetch_and_parse(url).title
+  def self.get_title(link)
+    doc = Hpricot.parse(open(link))
+    return doc.at("//title").inner_html
   end
 
 end

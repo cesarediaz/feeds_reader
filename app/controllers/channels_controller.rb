@@ -10,18 +10,24 @@ class ChannelsController < ApplicationController
   end
 
   def create
-    if params[:channel][:url].present? && channel_is_valid?(params[:channel][:url])
-      params[:channel][:user_id] = current_user.id
-      params[:channel][:name] = Channel.get_title(params[:channel][:url])
-      @channel = Channel.new(params[:channel])
-      if @channel.save
-        redirect_to(@channel) && return
+    begin
+      if params[:channel][:url].present? && channel_is_valid?(params[:channel][:url])
+        params[:channel][:user_id] = current_user.id
+        params[:channel][:name] = Channel.get_title(params[:channel][:url])
+        @channel = Channel.new(params[:channel])
+        if @channel.save
+          flash[:notice] = "Added #{@channel.name}!"
+          redirect_to "/"
+        else
+          render :action => "new"
+        end
       else
-        render :action => "new"
+        flash[:alert] = 'Add a valid rss feeds url'
+        redirect_to new_channel_path
       end
-    else
-      flash[:alert] = 'Add a valid rss feeds url'
-      redirect_to new_channel_path
+    rescue
+        flash[:alert] = 'Something went wrong! Please try again'
+        redirect_to new_channel_path
     end
   end
 
@@ -40,8 +46,9 @@ class ChannelsController < ApplicationController
   end
 
   def destroy
+    flash[:notice] = "Deleted #{@channel.name}!"
     @channel.destroy
-    redirect_to channels_path
+    redirect_to "/"
   end
 
   private
