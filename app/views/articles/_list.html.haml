@@ -1,3 +1,6 @@
+%h2!= @channel.name
+#channel_url{:style => 'display: none;'}= @channel.url
+#channel_id{:style => 'display: none;'}= @channel.id
 - if @articles
   = paginate @articles
   %ul.style3
@@ -7,3 +10,17 @@
       != article.description
       %br
   = paginate @articles
+
+:javascript
+  setInterval(function() {
+    var channel_url = $('#channel_url').text();
+    var channel_id = $('#channel_id').text();
+    $.ajax({
+         type: "GET",
+         url: "/articles/add_articles",
+         data: { channel: channel_id, link: channel_url },
+         success: function(){
+         }
+        })
+      }, 300000);
+

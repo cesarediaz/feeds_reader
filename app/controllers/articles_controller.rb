@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   def add_articles
+    @channel = Channel.find(params[:channel])
     begin
       params[:page] = params[:page] ||= 1
       Article.update_from_feed(params[:url], params[:channel])

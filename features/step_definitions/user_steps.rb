@@ -17,6 +17,7 @@ def create_unconfirmed_user
   visit '/users/sign_out'
 end
 
+
 def create_user
   create_visitor
   delete_user
@@ -55,6 +56,8 @@ end
 
 Given /^I am logged in$/ do
   create_user
+  url = "http://clarin.feedsportal.com/c/33088/f/577681/index.rss"
+  @channel = FactoryGirl.create(:channel, :user_id => @user.id, :url => url)
   sign_in
 end
 
@@ -74,6 +77,8 @@ end
 ### WHEN ###
 When /^I sign in with valid credentials$/ do
   create_visitor
+  url = "http://clarin.feedsportal.com/c/33088/f/577681/index.rss"
+  @channel = FactoryGirl.create(:channel, :user_id => @user.id, :url => url) if @user
   sign_in
 end
 
