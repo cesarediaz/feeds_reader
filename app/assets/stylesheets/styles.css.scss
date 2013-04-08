@@ -543,6 +543,30 @@ ul.style3 .first
 	color: #FFFFFF;
 }
 
+.li-style-active {
+	display: inline-block;
+	margin-top: 5px;
+    margin-bottom: 5px;
+	background: red;
+	border-radius: 5px;
+	letter-spacing: 1px;
+	text-decoration: none;
+	text-transform: uppercase;
+	color: #FFFFFF;
+}
+
+.link-style-active {
+	display: inline-block;
+	margin-top: 5px;
+    margin-bottom: 5px;
+	padding: 5px 5px;
+	background: red;
+	border-radius: 5px;
+	letter-spacing: 1px;
+	text-decoration: none;
+	text-transform: uppercase;
+	color: #FFFFFF;
+}
 
 
 
