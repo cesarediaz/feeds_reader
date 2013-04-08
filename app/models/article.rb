@@ -1,0 +1,33 @@
+require "feedzirra"
+
+class Article < ActiveRecord::Base
+  attr_accessible :channel_id, :description, :link, :pubDate, :title, :guid
+
+  belongs_to :channel
+
+  #################################################
+  # Validations
+  validates :link, :channel_id, :title, :pubDate, :presence => true
+
+  def self.update_from_feed(feed_url, channel)
+    feed = Feedzirra::Feed.fetch_and_parse(feed_url)
+    add_entries(feed.entries, channel)
+  end
+
+   private
+
+  def self.add_entries(entries, channel)
+    entries.each do |entry|
+      unless exists? :guid => entry.entry_id
+        create!(
+          :title         => entry.title,
+          :description   => entry.summary,
+          :link          => entry.url,
+          :pubDate       => entry.published,
+          :channel_id    => channel,
+          :guid          => entry.entry_id
+        )
+      end
+    end
+  end
+end

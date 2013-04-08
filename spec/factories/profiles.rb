@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :profile do
-    profile_type 1
+    profile_type 10
   end
 end

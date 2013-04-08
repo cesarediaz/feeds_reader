@@ -9,6 +9,7 @@ FeedsReader::Application.routes.draw do
   resources :profiles
   resources :channels
 
+  match 'articles/add_articles' => 'articles#add_articles'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

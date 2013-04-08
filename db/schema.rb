@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130405231414) do
+ActiveRecord::Schema.define(:version => 20130407214655) do
+
+  create_table "articles", :force => true do |t|
+    t.text     "title"
+    t.text     "description"
+    t.text     "link"
+    t.datetime "pubDate"
+    t.integer  "channel_id"
+    t.text     "guid"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "channels", :force => true do |t|
     t.text     "url"

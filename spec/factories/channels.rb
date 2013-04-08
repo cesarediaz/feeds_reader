@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :channel do
-    name "MyText"
+    name "News channel"
     user_id 1
   end
 end
