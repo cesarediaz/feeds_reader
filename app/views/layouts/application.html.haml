@@ -39,7 +39,7 @@
             %h2 Channels
             - @channels.each do |channel|
               %li
-                = link_to truncate(channel.name, :length => 20, :separator => ' '), articles_add_articles_path(:url => channel.url, :channel => channel.id), :remote => true, :class => 'link-style', :title => channel.name
+                = link_to truncate(Hpricot.uxs(channel.name), :length => 20, :separator => ' '), articles_add_articles_path(:url => channel.url, :channel => channel.id), :remote => true, :class => 'link-style', :title => channel.name
                 = link_to image_tag('edit.png', :size => '20x20'), edit_channel_path(channel)
                 = link_to image_tag('delete.png', :size => '20x20'), channel_path(channel), :confirm => 'Are you sure?', :method => :delete
     #footer.container
