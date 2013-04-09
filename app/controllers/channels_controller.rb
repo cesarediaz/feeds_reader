@@ -16,7 +16,7 @@ class ChannelsController < ApplicationController
         @channel = Channel.new(params[:channel])
         if @channel.save
           current_user.channels << @channel
-          flash[:notice] = "Added #{@channel.name}!"
+          flash[:notice] = Hpricot.uxs("Added #{@channel.name}!")
           redirect_to "/"
         else
           render :action => "new"
