@@ -13,6 +13,8 @@ describe User do
     }
   end
   it { should have_one(:profile) }
+  it { should have_and_belong_to_many(:channels) }
+
   it "should create a new instance given a valid attribute" do
     User.create!(@attr)
   end

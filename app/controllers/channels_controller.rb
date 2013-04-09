@@ -12,10 +12,10 @@ class ChannelsController < ApplicationController
   def create
     begin
       if params[:channel][:url].present? && channel_is_valid?(params[:channel][:url])
-        params[:channel][:user_id] = current_user.id
         params[:channel][:name] = Channel.get_title(params[:channel][:url])
         @channel = Channel.new(params[:channel])
         if @channel.save
+          current_user.channels << @channel
           flash[:notice] = "Added #{@channel.name}!"
           redirect_to "/"
         else

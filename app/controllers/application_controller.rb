@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def get_channels
     if user_signed_in?
-      @channels = Channel.where('user_id = ?', current_user.id)
+      @channels = current_user.channels
     end
   end
 

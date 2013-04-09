@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :login, :first_name, :last_name, :login
 
   has_one :profile
-  has_many :channels
+  has_and_belongs_to_many :channels
 
   #callback
   after_create do |user|

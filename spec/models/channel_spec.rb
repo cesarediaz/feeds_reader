@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Channel do
 
   it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:user_id) }
-  it { should belong_to(:user) }
+  it { should have_and_belong_to_many(:users) }
+  it { should have_many(:articles) }
 
   it "should be a valid rss url" do
     url = Channel.valid_rss_url?("http://ep00.epimg.net/rss/tags/ultimas_noticias.xml")

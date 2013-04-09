@@ -1,6 +1,7 @@
-%h2!= @channel.name
-#channel_url{:style => 'display: none;'}= @channel.url
-#channel_id{:style => 'display: none;'}= @channel.id
+- if @channel
+  %h2!= @channel.name
+  #channel_url{:style => 'display: none;'}= @channel.url
+  #channel_id{:style => 'display: none;'}= @channel.id
 - if @articles
   = paginate @articles
   %ul.style3
