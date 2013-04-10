@@ -6,7 +6,7 @@
   = paginate @articles
   %ul.style3
     - @articles.each do |article|
-      = link_to article.title, article.link
+      = link_to article.title, article.link, :target => '_blank'
       %br
       != article.description
       %br
@@ -16,12 +16,15 @@
   setInterval(function() {
     var channel_url = $('#channel_url').text();
     var channel_id = $('#channel_id').text();
+    var page = $('.current').first().text().trim();
+    alert(page);
     $.ajax({
          type: "GET",
          url: "/articles/add_articles",
-         data: { channel: channel_id, link: channel_url },
+         data: { channel: channel_id, link: channel_url, page: page },
          success: function(){
          }
         })
       }, 300000);
+
 

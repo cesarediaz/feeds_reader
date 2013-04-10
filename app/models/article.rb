@@ -1,6 +1,8 @@
 require "feedzirra"
 
 class Article < ActiveRecord::Base
+  paginates_per 15
+
   attr_accessible :channel_id, :description, :link, :pubDate, :title, :guid
 
   belongs_to :channel

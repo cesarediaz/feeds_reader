@@ -14,6 +14,11 @@ class Channel < ActiveRecord::Base
   validates :url, :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
 
 
+  after_create do |channel|
+    Article.update_from_feed(channel.url, channel.id)
+  end
+
+
   def self.valid_response_from_url?(url)
     url = URI.parse(url)
     req = Net::HTTP.new(url.host, url.port)

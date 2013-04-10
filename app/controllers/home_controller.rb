@@ -3,7 +3,7 @@ class HomeController < ApplicationController
     if user_signed_in? && !current_user.channels.empty?
       channel_id = params[:channel_id] ||= current_user.channels.first.id
       @channel = Channel.find(channel_id)
-      @articles = @channel.articles.page(params[:page]).per(10)
+      @articles = @channel.articles.page(params[:page])
     end
     @users = User.all
   end
