@@ -10,7 +10,7 @@
       %br
       != article.description
       %br
-  = paginate @articles
+  = paginate @articles, :remote => true
 
 :javascript
   setInterval(function() {
