@@ -6,7 +6,7 @@ class ChannelsUsers < ActiveRecord::Base
     where("channel_id = ?", channel_id).count
   end
 
-  def self.channel_user_counter channel_id, user_id
+  def self.channel_exist_for_user? channel_id, user_id
     where("channel_id = ? AND user_id = ?", channel_id, user_id).count
   end
 

@@ -21,15 +21,16 @@ class ChannelsController < ApplicationController
           save(@channel)
         else
           channel = find_channel_by_name(name)
-          add_channel_to_user(channel)
-          redirect_to "/"
+          @alert = add_channel_to_user(channel)
+          flash[:alert] = @alert
+          render :new
         end
       else
         flash[:alert] = 'Add a valid rss feeds url'
         redirect_to new_channel_path
       end
     rescue
-        flash[:alert] = 'Something went wrong! Please try again'
+        flash[:alert] = @alert ||= 'Something went wrong.. try again!!'
         redirect_to new_channel_path
     end
   end
@@ -49,7 +50,7 @@ class ChannelsController < ApplicationController
   end
 
   def destroy
-    flash[:notice] = "Deleted #{@channel.name}!"
+    flash[:notice] = Hpricot.uxs("Deleted #{@channel.name}!")
     counter = ChannelsUsers.channel_counter(@channel.id)
     counter > 1 ? ChannelsUsers.delete_channel_for_user(@channel.id, current_user.id) : @channel.destroy
     redirect_to "/"
@@ -66,11 +67,17 @@ class ChannelsController < ApplicationController
   end
 
   def add_channel_to_user(channel)
-    current_user.channels << channel
+    if ChannelsUsers.channel_exist_for_user?(channel.id, current_user.id) < 1
+      current_user.channels << channel
+      @alert = Hpricot.uxs("Channel '#{channel.name}' added! Do you want to add a new channel?")
+    else
+      @alert = Hpricot.uxs("You already have added this channel!")
+    end
+    return @alert
   end
 
   def find_channel_by_name(name)
-    Channel.where("name = ?", name)
+    Channel.where("name = ?", name).first
   end
 
   def save(channel)
