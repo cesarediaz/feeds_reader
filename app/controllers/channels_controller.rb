@@ -16,18 +16,9 @@ class ChannelsController < ApplicationController
       if channel_is_valid?(url)
         name = Channel.get_title(url)
         unless Channel.where("name = ?", name).exists?
-
           params[:channel][:name] = name
           @channel = Channel.new(params[:channel])
-
-          if @channel.save
-            add_channel_to_user(@channel)
-            flash[:notice] = Hpricot.uxs("Added #{@channel.name}!")
-            redirect_to "/"
-          else
-            render :action => "new"
-          end
-
+          save(@channel)
         else
           channel = find_channel_by_name(name)
           add_channel_to_user(channel)
@@ -80,5 +71,15 @@ class ChannelsController < ApplicationController
 
   def find_channel_by_name(name)
     Channel.where("name = ?", name)
+  end
+
+  def save(channel)
+    if channel.save
+      add_channel_to_user(channel)
+      flash[:notice] = Hpricot.uxs("Added #{channel.name}!")
+      redirect_to "/"
+    else
+      render :action => "new"
+    end
   end
 end
