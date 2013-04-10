@@ -3,13 +3,15 @@ class ArticlesController < ApplicationController
     @channel = Channel.find(params[:channel])
     begin
       params[:page] = params[:page] ||= 1
-      Article.update_from_feed(params[:url], params[:channel])
-      @articles = Article.where('channel_id = ?', params[:channel]).page(params[:page]).per(10)
+      Article.update_from_feed(params[:link], params[:channel])
+      channel = Channel.find(params[:channel])
+      @articles = channel.articles.page(params[:page]).per(10)
       respond_to do |format|
         format.js
       end
     rescue
-      @articles = Article.where('channel_id = ?', params[:channel]).page(params[:page]).per(10)
+      channel = Channel.find(params[:channel])
+      @articles = channel.articles.page(params[:page]).per(10)
       respond_to do |format|
         format.js
       end

@@ -5,6 +5,7 @@ describe Article do
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:link) }
   it { should validate_presence_of(:pubDate) }
+  it { should validate_presence_of(:guid) }
   it { should belong_to(:channel) }
 
   before(:each) do

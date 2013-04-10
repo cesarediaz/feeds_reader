@@ -11,15 +11,27 @@ class ChannelsController < ApplicationController
 
   def create
     begin
-      if params[:channel][:url].present? && channel_is_valid?(params[:channel][:url])
-        params[:channel][:name] = Channel.get_title(params[:channel][:url])
-        @channel = Channel.new(params[:channel])
-        if @channel.save
-          current_user.channels << @channel
-          flash[:notice] = Hpricot.uxs("Added #{@channel.name}!")
-          redirect_to "/"
+      url = params[:channel][:url] if params[:channel][:url].present?
+
+      if channel_is_valid?(url)
+        name = Channel.get_title(url)
+        unless Channel.where("name = ?", name).exists?
+
+          params[:channel][:name] = name
+          @channel = Channel.new(params[:channel])
+
+          if @channel.save
+            add_channel_to_user(@channel)
+            flash[:notice] = Hpricot.uxs("Added #{@channel.name}!")
+            redirect_to "/"
+          else
+            render :action => "new"
+          end
+
         else
-          render :action => "new"
+          channel = find_channel_by_name(name)
+          add_channel_to_user(channel)
+          redirect_to "/"
         end
       else
         flash[:alert] = 'Add a valid rss feeds url'
@@ -47,7 +59,8 @@ class ChannelsController < ApplicationController
 
   def destroy
     flash[:notice] = "Deleted #{@channel.name}!"
-    @channel.destroy
+    counter = ChannelsUsers.channel_counter(@channel.id)
+    counter > 1 ? ChannelsUsers.delete_channel_for_user(@channel.id, current_user.id) : @channel.destroy
     redirect_to "/"
   end
 
@@ -59,5 +72,13 @@ class ChannelsController < ApplicationController
 
   def channel_is_valid?(url)
     Channel.valid_rss_url?(url) && Channel.valid_response_from_url?(url) && Channel.get_title(url) ? true : false
+  end
+
+  def add_channel_to_user(channel)
+    current_user.channels << channel
+  end
+
+  def find_channel_by_name(name)
+    Channel.where("name = ?", name)
   end
 end

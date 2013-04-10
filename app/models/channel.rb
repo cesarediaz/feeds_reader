@@ -7,11 +7,12 @@ class Channel < ActiveRecord::Base
   attr_accessible :name, :url
 
   has_and_belongs_to_many :users
-  has_many :articles
+  has_many :articles, :order => "created_at DESC", :dependent => :destroy
   #################################################
   # Validations
   validates :name, :url, :presence => true
   validates :url, :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
+
 
   def self.valid_response_from_url?(url)
     url = URI.parse(url)
