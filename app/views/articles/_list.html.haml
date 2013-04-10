@@ -17,7 +17,6 @@
     var channel_url = $('#channel_url').text();
     var channel_id = $('#channel_id').text();
     var page = $('.current').first().text().trim();
-    alert(page);
     $.ajax({
          type: "GET",
          url: "/articles/add_articles",
