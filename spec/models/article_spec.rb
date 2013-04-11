@@ -7,9 +7,11 @@ describe Article do
   it { should validate_presence_of(:pubDate) }
   it { should validate_presence_of(:guid) }
   it { should belong_to(:channel) }
+  it { should have_many(:comments) }
 
   before(:each) do
     @article = FactoryGirl.create(:article)
+    sleep 0.2
   end
 
   it "should be a valid" do

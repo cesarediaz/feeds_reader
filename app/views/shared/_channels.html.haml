@@ -1,6 +1,6 @@
 %span{:style => 'float: left; padding: 0 10 10 0;'}
   = link_to image_tag('add.png', :size => '20x20', :title => 'Add new channel'), new_channel_path
-%h2 Channels
+%h2= link_to "Channels", "/"
 - @channels.each do |channel|
   %li
     = link_to truncate(Hpricot.uxs(channel.name), :length => 20, :separator => ' '), articles_add_articles_path(:url => channel.url, :channel => channel.id), :remote => true, :class => 'link-style', :title => channel.name

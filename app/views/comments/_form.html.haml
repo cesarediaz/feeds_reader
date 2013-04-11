@@ -1,0 +1,16 @@
+.alert You are comment the next article!
+%br
+
+%h1= @article.title
+%p!= @article.description
+
+= form_for(@comment, :html => { :id => 'comment_form' }) do |f|
+  = render :partial => 'shared/form_errors', :locals => {:target => @comment}
+  = hidden_field("comment", "article_id", :value => @article.id)
+  = hidden_field("comment", "user_id", :value => current_user.id)
+  = hidden_field("comment", "id", :value => @article.id)
+
+  %p Comment
+  = f.text_area :content
+
+  = f.submit

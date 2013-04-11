@@ -3,9 +3,13 @@
   #channel_url{:style => 'display: none;'}= @channel.url
   #channel_id{:style => 'display: none;'}= @channel.id
 - if @articles
-  = paginate @articles
+  = paginate @articles, :remote => true
   %ul.style3
     - @articles.each do |article|
+      = link_to 'Comment it!', new_comment_path(:id => article.id), :remote => true
+      |
+      = link_to "#{article.comments.count} comments!", article_path(article), :remote => true
+      %br
       = link_to article.title, article.link, :target => '_blank'
       %br
       != article.description

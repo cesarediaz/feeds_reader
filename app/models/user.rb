@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 
   has_one :profile
   has_and_belongs_to_many :channels
+  has_many :comments
 
   #callback
   after_create do |user|

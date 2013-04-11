@@ -8,6 +8,7 @@ describe ChannelsUsers do
    @channel = FactoryGirl.create(:channel, :url => 'http://ep00.epimg.net/rss/tags/ultimas_noticias.xml')
    @user_one.channels << @channel
    @user_two.channels << @channel
+   sleep 0.2
   end
 
   it "user should have one channel" do

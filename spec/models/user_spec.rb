@@ -11,9 +11,11 @@ describe User do
       :password => "changeme",
       :password_confirmation => "changeme"
     }
+   sleep 0.2
   end
   it { should have_one(:profile) }
   it { should have_and_belong_to_many(:channels) }
+  it { should have_many(:comments) }
 
   it "should create a new instance given a valid attribute" do
     User.create!(@attr)

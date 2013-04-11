@@ -6,6 +6,7 @@ class Article < ActiveRecord::Base
   attr_accessible :channel_id, :description, :link, :pubDate, :title, :guid
 
   belongs_to :channel
+  has_many :comments, :order => "created_at DESC", :dependent => :destroy
 
   #################################################
   # Validations

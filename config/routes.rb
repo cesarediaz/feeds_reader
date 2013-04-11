@@ -10,6 +10,9 @@ FeedsReader::Application.routes.draw do
   resources :channels
 
   match 'articles/add_articles' => 'articles#add_articles'
+  match 'articles/:id' => 'articles#show', :as => :article
+
+  resources :comments
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

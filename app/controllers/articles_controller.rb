@@ -19,4 +19,12 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def show
+    @article = Article.find(params[:id])
+    @comments = @article.comments.page(params[:page])
+    respond_to do |format|
+      format.js
+    end
+  end
+
 end

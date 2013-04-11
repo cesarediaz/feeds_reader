@@ -1,0 +1,19 @@
+%h1 Comments for the article!
+%br
+
+= link_to 'Comment it!', new_comment_path(:id => @article.id), :remote => true
+%br
+
+%h2= @article.title
+%p!= @article.description
+
+= paginate @comments, :remote => true
+- @comments.each do |comment|
+  = comment.user.profile ? image_tag(comment.user.profile.avatar(:thumb), :size => '40x40') : image_tag('thumb/missing.png', :size => '40x40')
+  = comment.user.login
+  %br
+  %br
+  = comment.content
+  %br
+  %br
+= paginate @comments, :remote => true
