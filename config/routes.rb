@@ -9,6 +9,7 @@ FeedsReader::Application.routes.draw do
   resources :profiles
   resources :channels
 
+  match 'articles/starred/:id' => 'articles#starred', :as => :starred
   match 'articles/add_articles' => 'articles#add_articles'
   match 'articles/:id' => 'articles#show', :as => :article
 

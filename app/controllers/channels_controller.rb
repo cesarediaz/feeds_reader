@@ -7,6 +7,10 @@ class ChannelsController < ApplicationController
 
   def new
     @channel = Channel.new
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def create
@@ -39,6 +43,10 @@ class ChannelsController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def update

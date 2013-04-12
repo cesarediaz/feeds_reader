@@ -1,5 +1,5 @@
 %span{:style => 'float: left; padding: 0 10 10 0;'}
-  = link_to image_tag('add.png', :size => '20x20', :title => 'Add new channel'), new_channel_path
+  = link_to image_tag('add.png', :size => '20x20', :title => 'Add new channel'), new_channel_path, :remote => true
 %h2= link_to "Channels", "/"
 - @channels.each do |channel|
   %li

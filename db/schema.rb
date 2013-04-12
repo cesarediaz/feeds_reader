@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130411044313) do
+ActiveRecord::Schema.define(:version => 20130411213927) do
 
   create_table "articles", :force => true do |t|
     t.text     "title"
@@ -20,8 +20,9 @@ ActiveRecord::Schema.define(:version => 20130411044313) do
     t.datetime "pubDate"
     t.integer  "channel_id"
     t.text     "guid"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "starred",     :default => false
   end
 
   create_table "channels", :force => true do |t|

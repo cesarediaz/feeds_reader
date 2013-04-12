@@ -27,4 +27,12 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def starred
+    @id = params[:id]
+    Article.find(@id).update_attribute(:starred, true)
+    respond_to do |format|
+      format.js
+    end
+  end
+
 end
