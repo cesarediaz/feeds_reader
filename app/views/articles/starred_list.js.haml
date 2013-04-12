@@ -1,0 +1,2 @@
+$('#list').html("#{escape_javascript(render :partial => 'starred_list', :locals => {:articles => @articles})}");
+$('.pagination').html("#{escape_javascript(paginate(@articles, :remote => true).to_s)}");

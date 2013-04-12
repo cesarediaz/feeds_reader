@@ -8,6 +8,8 @@ class Article < ActiveRecord::Base
   belongs_to :channel
   has_many :comments, :order => "created_at DESC", :dependent => :destroy
 
+  has_and_belongs_to_many :users
+
   #################################################
   # Validations
   validates :link, :channel_id, :title, :pubDate, :guid, :presence => true

@@ -1,24 +1,12 @@
-= link_to 'Starred articles', starred_list_path, :remote => true
-|
-- if @channel
-  = link_to 'Take a close look to this channel ', @channel.url, :target => '_blank'
-  %h2!= @channel.name
-  #channel_url{:style => 'display: none;'}= @channel.url
-  #channel_id{:style => 'display: none;'}= @channel.id
+%h2 My starred articles
 - if @articles
   = paginate @articles, :remote => true
   %ul.style3
     - @articles.each do |article|
-      %span{:id => "article#{article.id}"}
       = link_to 'Comment it!', new_comment_path(:id => article.id), :remote => true
       |
       = link_to "#{article.comments.count} comments!", article_path(article), :remote => true
       |
-      %span{:id => article.id}
-        - unless @starred_articles_ids.include?(article.id)
-          = link_to image_tag('starring.svg'), starred_path(article), :remote => true
-        - else
-          = image_tag("starred.svg")
       %br
       = link_to article.title, article.link, :target => '_blank'
       %br

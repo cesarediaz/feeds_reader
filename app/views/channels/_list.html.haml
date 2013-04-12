@@ -2,7 +2,7 @@
 %ul.style3
   - @channels.each do |channel|
     %li.first
-      %a{:href => "#"}= channel.name
+      %a{:href => "#"}= Hpricot.uxs(channel.name)
       |
       = link_to 'Edit', edit_channel_path(channel), :remote => true
       |

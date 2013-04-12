@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_one :profile
   has_and_belongs_to_many :channels
   has_many :comments
+  has_and_belongs_to_many :articles
 
   #callback
   after_create do |user|
