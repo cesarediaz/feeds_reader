@@ -14,6 +14,15 @@ class Article < ActiveRecord::Base
   # Validations
   validates :link, :channel_id, :title, :pubDate, :guid, :presence => true
 
+
+  def self.text_search(query)
+    if query.present?
+      search(query)
+    else
+      scoped
+    end
+  end
+
   def self.update_from_feed(feed_url, channel)
     feed = Feedzirra::Feed.fetch_and_parse(feed_url)
     add_entries(feed.entries, channel)

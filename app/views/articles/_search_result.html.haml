@@ -14,12 +14,6 @@
       = link_to 'Comment it!', new_comment_path(:id => article.id), :remote => true
       |
       = link_to "#{article.comments.count} comments!", article_path(article), :remote => true
-      |
-      %span{:id => article.id}
-        - unless @starred_articles_ids.include?(article.id)
-          = link_to image_tag('starring.svg'), starred_path(article), :remote => true
-        - else
-          = image_tag("starred.svg")
       %br
       = link_to article.title, article.link, :target => '_blank'
       %br

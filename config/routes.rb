@@ -13,6 +13,7 @@ FeedsReader::Application.routes.draw do
   match 'articles/add_articles' => 'articles#add_articles'
   match 'articles/:id' => 'articles#show', :as => :article
   match 'starred_list' => 'articles#starred_list', :as => :starred_list
+  match 'articles' => 'articles#index'
 
   resources :comments
   # The priority is based upon order of creation:

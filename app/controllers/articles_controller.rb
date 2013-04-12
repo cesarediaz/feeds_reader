@@ -1,4 +1,13 @@
 class ArticlesController < ApplicationController
+
+  def index
+    @articles = Article.text_search(params[:query]).page(params[:page])
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   def add_articles
     @channel = Channel.find(params[:channel])
     @starred_articles_ids = current_user.articles.map { |r| r.id }
