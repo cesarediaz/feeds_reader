@@ -41,4 +41,8 @@ gem "feedzirra"
 gem "feedvalidator", ">= 0.1.2"
 gem "hpricot", ">= 0.8.6"
 gem "kaminari", ">= 0.14.1"
-gem "texticle", ">= 2.2.0", require: "texticle/rails"
+gem "textacular", "~> 3.0", require: "textacular/rails"
+gem "activeadmin", "~> 0.6.0"
+gem "meta_search",    '>= 1.1.0.pre'
+
+
