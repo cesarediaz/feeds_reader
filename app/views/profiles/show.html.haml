@@ -1,0 +1,14 @@
+- if @profile
+  %h1 Profile type
+  %p= "#{@profile.profile_type}  channels"
+
+  %h1 Avatar
+  - if @profile.avatar
+    = image_tag(@profile.avatar.url(:thumb))
+
+    = link_to 'Edit', edit_profile_path(@profile)
+    |
+    = link_to 'Destroy', profile_path(@profile),  :confirm => 'Are you sure?', :method => :delete
+- else
+  %p You should complete your profile!
+  = link_to 'New', new_profile_path

@@ -1,0 +1,10 @@
+%h1 Name
+%p= @channel.name
+
+%h1 Url
+%p= link_to  @channel.url, @channel.url, :target => 'blank'
+= link_to 'Edit', edit_channel_path(@channel)
+|
+= link_to 'Destroy', channel_path(@channel),  :confirm => 'Are you sure?', :method => :delete
+
+
