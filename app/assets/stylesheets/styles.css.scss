@@ -632,3 +632,11 @@ ul.style3 .first
     color: black; }
     .pagination a:hover, .pagination a:focus {
       text-decoration: underline; }
+
+.alert {
+  color: red;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: bold;
+  display: inline-block;
+}

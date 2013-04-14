@@ -26,8 +26,9 @@
     #page.container
       #content
         #onecolumn
-          = render :partial => "layouts/messages"
           #list
+            = render :partial => "layouts/messages"
+            %br
             = yield
           - unless user_signed_in?
             %h2 Welcome to Rss Feeds Reader!
