@@ -14,6 +14,9 @@ class Article < ActiveRecord::Base
   # Validations
   validates :link, :channel_id, :title, :pubDate, :guid, :presence => true
 
+  after_create do
+    self.channel.update_attribute(:updated_at, Time.now)
+  end
 
   def self.text_search(query)
     if query.present?

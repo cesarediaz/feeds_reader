@@ -13,7 +13,7 @@ class ArticlesController < ApplicationController
     @starred_articles_ids = current_user.articles.map { |r| r.id }
     begin
       params[:page] = params[:page] ||= 1
-      Article.update_from_feed(params[:link], params[:channel])
+      Article.update_from_feed(params[:url], params[:channel])
       channel = Channel.find(params[:channel])
       @articles = channel.articles.page(params[:page])
       respond_to do |format|

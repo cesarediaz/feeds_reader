@@ -10,7 +10,8 @@ describe Article do
   it { should have_many(:comments) }
 
   before(:each) do
-    @article = FactoryGirl.create(:article)
+    @channel = FactoryGirl.create(:channel, :url => "http://ep00.epimg.net/rss/tags/ultimas_noticias.xml")
+    @article = FactoryGirl.create(:article, :channel_id => @channel.id)
     sleep 0.2
   end
 
