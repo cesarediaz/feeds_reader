@@ -1,6 +1,7 @@
 class ChannelsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :get_channel, :only => [:show, :edit, :update, :destroy]
+  CHANNELS_MINIMUN_LIMIT = 10
 
   def index
   end
@@ -16,8 +17,7 @@ class ChannelsController < ApplicationController
   def create
     begin
       url = params[:channel][:url] if params[:channel][:url].present?
-
-      if channel_is_valid?(url)
+      if channel_is_valid?(url) && user_channels_not_on_limit?
         name = Channel.get_title(url)
         unless Channel.where("name = ?", name).exists?
           params[:channel][:name] = name
@@ -30,12 +30,10 @@ class ChannelsController < ApplicationController
           render :new
         end
       else
-        flash[:alert] = 'Add a valid rss feeds url'
-        redirect_to new_channel_path
+        alert_and_redirect
       end
     rescue
-        flash[:alert] = @alert ||= 'Something went wrong.. try again!!'
-        redirect_to new_channel_path
+      alert_and_redirect
     end
   end
 
@@ -96,5 +94,23 @@ class ChannelsController < ApplicationController
     else
       render :action => "new"
     end
+  end
+
+  def user_channels_not_on_limit?
+    qty = current_user.profile.profile_type if current_user.profile
+    if current_user.profile
+      current_user.channels.count < qty ? true : false
+    else
+      current_user.channels.count < CHANNELS_MINIMUN_LIMIT  ? true : false
+    end
+  end
+
+  def alert_and_redirect
+    if user_channels_not_on_limit?
+      flash[:alert] = @alert ||= 'Something went wrong.. try again!!'
+    else
+      flash[:alert] = 'Your channels list is on the limit'
+    end
+    redirect_to new_channel_path
   end
 end
