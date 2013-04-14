@@ -1,0 +1,4 @@
+%h2 Latest users added
+- @users.each do |u|
+  %li.last_channel
+    %div{:style => 'float: left;'}= u.profile ? image_tag(u.profile.avatar(:thumb), :size => '40x40', :title => u.login) : image_tag('thumb/missing.png', :size => '40x40', :title => u.login)

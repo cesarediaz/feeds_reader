@@ -1,0 +1,4 @@
+%h2 Latest channels added
+- @channels.each do |channel|
+  %li.last_channel
+    = link_to truncate(Hpricot.uxs(channel.name), :length => 20, :separator => ' '), channel.url, :target => '_blank'

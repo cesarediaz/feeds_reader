@@ -30,6 +30,7 @@ strong {
 
 a {
 	color: #0000FF;
+    text-decoration: none;
 }
 
 a:hover {
@@ -680,3 +681,8 @@ input.button {
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
 }
+
+.last_channel {
+  font-size: 15px;
+}
+

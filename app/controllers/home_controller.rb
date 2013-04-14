@@ -10,6 +10,5 @@ class HomeController < ApplicationController
       format.js
       format.html
     end
-    @users = User.all
   end
 end
