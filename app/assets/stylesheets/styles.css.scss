@@ -640,3 +640,26 @@ ul.style3 .first
   font-weight: bold;
   display: inline-block;
 }
+
+.notice {
+  color: green;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.comment {
+  background: #F8F8F8;
+  padding: 5px 15px;
+  font-size: 15px;
+  font-style: normal;
+  -moz-border-radius: 0.1em;
+  -webkit-border-radius: 0.1em;
+  border-radius: 0.3em;
+  border: #000 1px solid;
+}
+
+.spacing {
+  padding: 5px;
+}

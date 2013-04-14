@@ -9,11 +9,11 @@
 
 = paginate @comments, :remote => true
 - @comments.each do |comment|
-  = comment.user.profile ? image_tag(comment.user.profile.avatar(:thumb), :size => '40x40') : image_tag('thumb/missing.png', :size => '40x40')
-  = comment.user.login
-  %br
-  %br
-  = comment.content
-  %br
-  %br
+  .comment
+    = comment.user.profile ? image_tag(comment.user.profile.avatar(:thumb), :size => '40x40') : image_tag('thumb/missing.png', :size => '40x40')
+    = comment.user.login
+    %br
+    %br
+    = comment.content
+  .spacing
 = paginate @comments, :remote => true

@@ -14,6 +14,7 @@ class CommentsController < ApplicationController
     @article = Article.find(params[:comment][:article_id])
     @comment = Comment.new(params[:comment])
     if @comment.save
+      flash[:notice] = 'Your comment was added succesfully!'
       redirect_to :controller => 'home', :action => 'index', :channel_id => @comment.article.channel.id
     else
       render :action => "new"
