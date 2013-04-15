@@ -19,4 +19,10 @@ describe Article do
     @article.should_not be_nil
   end
 
+  it "should change update_at value for channel" do
+    previous_date = @channel.updated_at
+    FactoryGirl.create(:article, :channel_id => @channel.id)
+    @channel.updated_at.to_i != previous_date.to_i
+  end
+
 end
