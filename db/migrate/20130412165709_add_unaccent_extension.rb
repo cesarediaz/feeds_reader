@@ -1,12 +1,10 @@
 class AddUnaccentExtension < ActiveRecord::Migration
 
   def up
-    execute "su -"
-    execute "create extension unaccent"
-    execute "exit"
+    #execute "create extension unaccent"
   end
 
   def down
-    execute "drop extension unaccent"
+    #execute "drop extension unaccent"
   end
 end
