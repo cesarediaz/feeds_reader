@@ -7,4 +7,11 @@ ActiveAdmin.register User do
     column :sign_in_count
     default_actions
   end
+
+  collection_action :index, :method => :get do
+    scope = User.scoped
+    @collection = scope.page() if params[:q].blank?
+    @search = scope.metasearch(clean_search_params(params[:q]))
+  end
+
 end
