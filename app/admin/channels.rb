@@ -7,4 +7,10 @@ ActiveAdmin.register Channel do
     default_actions
   end
 
+  collection_action :index, :method => :get do
+    scope = Channel.scoped
+    @collection = scope.page() if params[:q].blank?
+    @search = scope.metasearch(clean_search_params(params[:q]))
+  end
+
 end
