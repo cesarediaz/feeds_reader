@@ -19,5 +19,6 @@ production:
   google:
     app_id: "98373461122-15gjl65qs87jta6i8vgqlumrpihjc5b3.apps.googleusercontent.com"
     app_secret: "MChHA4alt_SyBT5XoD21B6y6"
-
+  site:
+    url: "www.leonoticias.com.ar"
 
