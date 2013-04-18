@@ -7,7 +7,7 @@ class Channel < ActiveRecord::Base
   attr_accessible :name, :url
 
   has_and_belongs_to_many :users
-  has_many :articles, :order => "created_at DESC", :dependent => :destroy
+  has_many :articles, :order => "created_at ASC", :dependent => :destroy
   #################################################
   # Validations
   validates :name, :url, :presence => true
