@@ -17,7 +17,7 @@ class ChannelsController < ApplicationController
   def create
     begin
       url = params[:channel][:url] if params[:channel][:url].present?
-      if channel_is_valid?(url) && user_channels_not_on_limit?
+      if Channel.channel_is_valid?(url) && user_channels_not_on_limit?
         name = Channel.get_title(url)
         unless Channel.where("name = ?", name).exists?
           params[:channel][:name] = name
@@ -66,10 +66,6 @@ class ChannelsController < ApplicationController
 
   def get_channel
     @channel = Channel.find(params[:id])
-  end
-
-  def channel_is_valid?(url)
-    Channel.valid_rss_url?(url) && Channel.valid_response_from_url?(url) && Channel.get_title(url) ? true : false
   end
 
   def add_channel_to_user(channel)

@@ -43,5 +43,9 @@ class Channel < ActiveRecord::Base
     hour.min - last_update.min < MINUTES
   end
 
+  def self.channel_is_valid?(url)
+    valid_rss_url?(url) && valid_response_from_url?(url) && get_title(url)
+  end
+
 
 end
