@@ -1,7 +1,6 @@
 class ArticlesController < ApplicationController
   before_filter :authenticate_user!
 
-  MINUTES = 5
   def index
     @articles = Article.text_search(params[:query]).page(params[:page])
     respond_to do |format|
@@ -14,7 +13,7 @@ class ArticlesController < ApplicationController
     @channel = Channel.find(params[:channel])
     @starred_articles_ids = current_user.articles.map { |r| r.id }
     begin
-      unless updated_recently?(@channel)
+      unless @channel.updated_recently?
         Article.update_from_feed(params[:url], params[:channel])
       end
       params[:page] = params[:page] ||= 1
@@ -49,12 +48,6 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       format.js
     end
-  end
-
-  def updated_recently?(channel)
-    hour = Time.now
-    last_update = channel.updated_at
-    hour.min - last_update.min < MINUTES ? true : false
   end
 
 end

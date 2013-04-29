@@ -4,7 +4,7 @@ set :application, "leonoticias"
 
 set :repository, "git@github.com:cesarediaz/feeds_reader.git"  # Your clone URL
 set :scm, "git"
-set :branch, "packaged_gems" #master
+set :branch, "master" #master
 set :scm_verbose, true
 set :deploy_via, :remote_cache
 set :scm_passphrase, "password"  # The deploy user's password

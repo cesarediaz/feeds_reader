@@ -4,6 +4,7 @@ require "feed_validator"
 require 'hpricot'
 
 class Channel < ActiveRecord::Base
+  MINUTES = 5
   attr_accessible :name, :url
 
   has_and_belongs_to_many :users
@@ -35,5 +36,12 @@ class Channel < ActiveRecord::Base
     doc = Hpricot.parse(open(link))
     return doc.at("//title").inner_html
   end
+
+  def self.updated_recently?
+    hour = Time.now
+    last_update = self.updated_at
+    hour.min - last_update.min < MINUTES
+  end
+
 
 end
