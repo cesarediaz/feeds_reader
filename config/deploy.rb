@@ -12,7 +12,7 @@ set :deploy_to, "/home/#{user}/#{domain}"
 set :use_sudo, false
 set :shared_path, "#{deploy_to}/shared"
 set :normalize_asset_timestamps, false
-
+set :keep_releases, 3
 
 require 'bundler/capistrano'
 
