@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
-gem 'mysql2', '0.3.16'
+gem 'rails', '3.2.19'
+#gem 'mysql2', '0.3.16'
+gem 'pg', '~> 0.17.1'
 
 # Gems used only for assets and not required
 # in production environments by default.
