@@ -66,4 +66,14 @@ FeedsReader::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   config.action_mailer.default_url_options = { :host => 'www.leonoticias.com.ar' }
   config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'feeds-reader.herokuapp.com',
+    user_name:            ENV['GMAIL_EMAIL_ADDRESS'],
+    password:             ENV['GMAIL_EMAIL_ADDRESS_PASSWORD'],
+    authentication:       'plain',
+    enable_starttls_auto: true  
+  }
 end
